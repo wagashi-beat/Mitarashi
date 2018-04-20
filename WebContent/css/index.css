@@ -1,0 +1,12 @@
+header .headerA{
+	width:100%;
+	height:500px;
+	background-color:#800020;
+}
+
+header .logo{
+
+}
+header .logo:hover{
+	transition: opacity 3s ease;
+}
