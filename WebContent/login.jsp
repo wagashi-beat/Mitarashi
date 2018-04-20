@@ -1,12 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix= "s" uri= "/struts-tags" %>
+<!DOCTYPE>
+
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta charset= "UTF-8">
+	<title>ログイン</title>
 </head>
-<body>
 
+<body>
+	（o・▽・o）
+
+	<s:form action= "LoginAction">
+
+	<input type= "text" name= "userId" value= "" placeholder= "ユーザーID" />
+	<input type= "password" name= "password" value= "" placeholder= "パスワード" />
+
+	<input type= "checkbox" name= "loginMemory" value= "1" />
+
+	<input type= "submit" name= "submit" value= "enter" />
+
+	</s:form>
 </body>
 </html>

@@ -12,5 +12,7 @@
 <body>
 	<img src= "./img/mitarashi_dango.png">
 
+	（o・<a href= '<s:url action= "GoLoginAction" />'>▽</a>・o）
+
 </body>
 </html>

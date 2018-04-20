@@ -6,10 +6,12 @@
 	<constant name="struts.devMode" value="true" />
  	<package name= "mitarashi.Action" extends= "struts-default">
 
+
 		<!-- スタート画面 -->
 		<action name= "StartAction" class= "mitarashi.Action.StartAction" method= "execute">
 			<result type= "chain" name= "success">GoHomeAction</result>
 		</action>
+
 
 		<!-- ホーム画面 -->
 		<action name= "GoHomeAction" class= "mitarashi.Action.GoHomeAction" method= "execute">
@@ -17,5 +19,15 @@
 		</action>
 
 
+		<!-- ログイン画面遷移 -->
+		<action name= "GoLoginAction" class= "mitarashi.Action.GoLoginAction" method= "execute">
+			<result name= "success">login.jsp</result>
+		</action>
+
+		<!-- ログイン画面 -->
+		<action name= "LoginAction" class= "mitarashi.Action.LoginAction" method= "execute">
+			<result name= "success">home.jsp</result>
+			<result name= "error">login.jsp</result>
+		</action>
  </package>
  </struts>
