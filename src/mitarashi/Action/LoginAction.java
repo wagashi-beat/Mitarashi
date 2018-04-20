@@ -37,13 +37,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		private String errorLogId;
 
 		// IDに関するエラーリスト
-		private ArrayList<String> errorLogIdList;
+		private ArrayList<String> errorLogIdList= new ArrayList<>();
 
 		// パスワードに関するエラー
 		private String errorLogPass;
 
 		// パスワードに関するエラーリスト
-		private ArrayList<String> errorLogPassList;
+		private ArrayList<String> errorLogPassList= new ArrayList<>();
 
 		private LoginDAO loginDAO= new LoginDAO();
 		private LoginDTO loginDTO= new LoginDTO();
@@ -59,85 +59,89 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
 		// 未入力項目があった場合
-		if (userId.equals("") || password.equals("")) {
+		if (userId.equals("") || password.equals("") ||
+				userId.equals("") && password.equals("")) {
 			errorLog= "未入力項目があります（o・▽・o）";
 			session.put("errorLog", errorLog);
 			errorCount++;
 		}
 
+		// 未入力項目がなかった場合
+		else {
 
-		// IDに関するエラー
-		// errorLogIdにセットしerrorLogIdListに詰め、jspでiteratorにより表示
-		// 文字数エラー
-		if (userId.length()<3 || userId.length()>16 && !userId.equals("")) {
-			errorLogId= "3文字以上16文字以下で入力してください（o・▽・o）";
-			errorLogIdList.add("errorLogId");
-			errorCount++;
+			// IDに関するエラー
+			// errorLogIdにセットしerrorLogIdListに詰め、jspでiteratorにより表示
+			// 文字数エラー
+			if (userId.length()<3 || userId.length()>16) {
+				errorLogId= "3文字以上16文字以下で入力してください（o・▽・o）";
+				errorLogIdList.add("errorLogId");
+				errorCount++;
+			}
+
+			// 文字種エラー
+			if (!userId.matches("^[0-9a-zA-Z]+$")) {
+				errorLogId= "半角英数字で入力してください（o・▽・o）";
+				errorLogIdList.add("errorLogId");
+				errorCount++;
+			}
+
+
+			// パスワードに関するエラー
+			// errorLogPassにセットしerrorLogPassListに詰め、jspでiteratorにより表示
+			// 文字数エラー
+			if (password.length()<3 || password.length()>16) {
+				errorLogPass= "3文字以上16文字以下で入力してください（o・▽・o）";
+				errorLogPassList.add("errorLogPass");
+				errorCount++;
+			}
+
+			// 文字種エラー
+			if (!password.matches("^[0-9a-zA-Z]+$")) {
+				errorLogPass= "半角英数字で入力してください（o・▽・o）";
+				errorLogPassList.add("errorLogPass");
+				errorCount++;
+			}
 		}
-
-		// 文字種エラー
-		if (!userId.matches("^[0-9a-zA-Z]+$") && !userId.equals("")) {
-			errorLogId= "半角英数字で入力してください（o・▽・o）";
-			errorLogIdList.add("errorLogId");
-			errorCount++;
-		}
-
-
-		// パスワードに関するエラー
-		// errorLogPassにセットしerrorLogPassListに詰め、jspでiteratorにより表示
-		// 文字数エラー
-		if (password.length()<3 || password.length()>16 && !password.equals("")) {
-			errorLogPass= "3文字以上16文字以下で入力してください（o・▽・o）";
-			errorLogPassList.add("errorLogPass");
-			errorCount++;
-		}
-
-		// 文字種エラー
-		if (!password.matches("^[0-9a-zA-Z]+$") && !password.equals("")) {
-			errorLogPass= "半角英数字で入力してください（o・▽・o）";
-			errorLogPassList.add("errorLogPass");
-			errorCount++;
-		}
-
 		// errorCount集計、0以上の場合ERRORを返す
 		if (errorCount> 0) {
 			ret= ERROR;
 			return ret;
 		}
 
-
-		// LoginDAOのgetLoginUserInfoにuserId、passwordをセットし、user_infoと照合
-		loginDTO= loginDAO.getLogin(userId, password);
-
-		if (userId.equals(loginDTO.getUserId()) && password.equals(loginDTO.getPassword())) {
-			ret= SUCCESS;
-
-			// sessionにuserId、password、loginDAOから返ってきたloginFlgのtrueをセット
-			session.put("userId", loginDTO.getUserId());
-			session.put("password", loginDTO.getPassword());
-			session.put("loginFlg", loginDTO.getLoginFlg());
-
-			// loginMemoryにチェックが入っている場合、1がくる
-			// loginDTOにセット
-			if (loginMemory.equals("1")) {
-				loginDTO.setLoginMemory("1");
-				ret= SUCCESS;
-			}
-
-			// チェックが入っていない場合はそのままSUCCESSを返す
-			else {
-				ret= SUCCESS;
-			}
-
-			return ret;
-		}
-
 		else {
-			errorLog= "ログインIDかパスワードが違うよ～（o・▽・o）";
-			session.put("errorLog", errorLog);
-			ret= ERROR;
-		}
+			// LoginDAOのgetLoginにuserId、passwordをセットし、user_infoと照合
+			loginDTO= loginDAO.getLogin(userId, password);
 
+			if (userId.equals(loginDTO.getUserId()) && password.equals(loginDTO.getPassword())) {
+				ret= SUCCESS;
+
+				// sessionにuserId、password、loginDAOから返ってきたloginFlgのtrueをセット
+				session.put("userId", loginDTO.getUserId());
+				session.put("password", loginDTO.getPassword());
+				session.put("loginFlg", loginDTO.getLoginFlg());
+
+				// loginMemoryにチェックが入っている場合、1がくる
+				// loginDTOにセット
+				if (loginMemory.equals("1")) {
+					loginDTO.setLoginMemory("1");
+					ret= SUCCESS;
+				}
+
+				// チェックが入っていない場合はそのままSUCCESSを返す
+				else {
+					ret= SUCCESS;
+				}
+
+				return ret;
+			}
+
+			// LoginDAOでuser_infoにデータが無かった場合
+			else {
+				errorLog= "ログインIDかパスワードが違うよ～（o・▽・o）";
+				session.put("errorLog", errorLog);
+				ret= ERROR;
+			}
+		}
 		return ret;
 	}
 
