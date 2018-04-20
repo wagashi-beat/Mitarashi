@@ -30,7 +30,7 @@ public class LoginDAO {
 			ResultSet rs= ps.executeQuery();
 
 
-			// user_infoにセットできた場合、loginDTOにセット
+			// user_infoにセットできた場合、loginDTOにセット＝ログイン成功
 			if (rs.next()) {
 				loginDTO.setUserId(rs.getString("user_id"));
 				loginDTO.setPassword(rs.getString("password"));

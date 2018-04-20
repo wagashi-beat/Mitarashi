@@ -7,19 +7,62 @@
 <head>
 	<meta charset= "UTF-8">
 	<title>ログイン</title>
+
+
+<style type="text/css">
+	p.error {
+	color: red;
+	}
+
+</style>
+
 </head>
 
 <body>
-	（o・▽・o）
+	ログ（o・▽・o）イン（o・▽・o）だよー（o・▽・o）
 
 	<s:form action= "LoginAction">
 
+	<!-- 未入力エラー -->
+	<p class= "error">
+	<s:if test= '#session.errorLog != "" '>
+		<s:property value= "session.errorLog" />
+	</s:if>
+	</p>
+
+	<!-- IDに関するエラー -->
+	<p class= "error">
+	<s:if test= "errorLogIdList != null">
+		<s:iterator value= "errorLogIdList">
+			<s:property value= "errorLogId" />
+		</s:iterator>
+	</s:if>
+	</p>
+
+	<!-- ユーザーID入力フォーム -->
 	<input type= "text" name= "userId" value= "" placeholder= "ユーザーID" />
-	<input type= "password" name= "password" value= "" placeholder= "パスワード" />
 
-	<input type= "checkbox" name= "loginMemory" value= "1" />
 
+	<!-- パスワードに関するエラー -->
+	<p class= "error">
+	<s:if test= "errorLogPassList != null">
+		<s:iterator value= "errorLogPassList">
+			<s:property value= "errorLogPass" />
+		</s:iterator>
+	</s:if>
+	</p>
+
+	<!-- パスワード入力フォーム -->
+	<input type= "password" name= "password" value= "" placeholder= "パスワード" /><br>
+
+
+	<!-- ID保存チェックボックス -->
+	<input type= "checkbox" name= "loginMemory" value= "1" /> ログインIDを保存<br>
+
+
+	<!-- サブミットボタン -->
 	<input type= "submit" name= "submit" value= "enter" />
+
 
 	</s:form>
 </body>
