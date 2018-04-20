@@ -101,7 +101,7 @@ email varchar(32) not null,
 tel_number varchar(13) not null,
 post_number varchar(7) not null,
 user_address varchar(50) not null,
-regist_date datetime not null,
+regist_date datetime,
 update_date datetime
 );
 
@@ -144,3 +144,8 @@ INSERT INTO user_info VALUES (
 				"2018/04/01",
 				"2018/04/20"
 );
+
+
+-- カテゴリテスト --
+INSERT INTO m_category VALUES (1, 1, "団子", "2018/04/01", "2018/04/20");
+INSERT INTO m_category VALUES (2, 2, "もち", "2018/04/01", "2018/04/20");

@@ -29,5 +29,11 @@
 			<result name= "success">home.jsp</result>
 			<result name= "error">login.jsp</result>
 		</action>
+
+
+		<!-- ユーザー新規登録画面遷移 -->
+		<action name= "GoUserCreateAction" class= "mitarashi.Action.GoUserCreateAction" method= "execute">
+			<result name= "success">userCreate.jsp</result>
+		</action>
  </package>
  </struts>
