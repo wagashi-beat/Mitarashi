@@ -10,3 +10,8 @@ header .logo{
 header .logo:hover{
 	transition: opacity 3s ease;
 }
+
+input[type=submit]{
+    font-family: FontAwesome;
+
+}
