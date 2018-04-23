@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel= "stylesheet" type= "text/css" href= "./css/index.css">
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 <title>header</title>
 </head>
 <body>
@@ -16,11 +17,18 @@
 			</div>
 			<div class="searchBox">
 				<s:form method="post" action="ItemSearchAction" class="search">
-				<s:select listKey = "categoryId" listValue = "categoryName" list="dropList">
-					<option value="0" selected="selected">すべてのカテゴリ</option>
-				</s:select>
+				<select name="category" id="select1">
+									<option value="0" selected="selected">すべての和菓子</option>
+									<option value="1">団子</option>
+									<option value="2">餅</option>
+									<option value="3">練りもの</option>
+								</select>
 
-				<input id="search_button" type="submit" name="submit" value="登録">
+								<input type="text" name="searchWord" placeholder="検索" maxlength="16" class="searchBox" />
+
+								<input type="submit" alt="検索" value="検索" id="searchButton" >
+
+
 				</s:form>
 			</div>
 		</div>

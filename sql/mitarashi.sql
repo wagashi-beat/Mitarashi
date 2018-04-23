@@ -66,6 +66,7 @@ release_company_id int not null,
 image_file_path varchar(100) not null,
 image_file_name varchar(50) not null,
 release_date varchar(16) not null,
+stock_count int not null,
 status tinyint default 0 not null,
 regist_date datetime not null,
 update_date datetime
@@ -143,6 +144,26 @@ INSERT INTO user_info VALUES (
 				1,
 				"2018/04/01",
 				"2018/04/20"
+);
+
+-- 商品情報テスト --
+INSERT INTO product_info VALUES(
+				1,
+				1,
+				"みたらし団子",
+				"みたらしだんご",
+				"おいしいみたらし団子です",
+				500,
+				1,
+				1,
+			 	"./img/dango2.png",
+				"dango2.png",
+				2015/03,
+				20,
+				1,
+				"2018/4/23",
+				"2018/4/23"
+
 );
 
 
