@@ -84,13 +84,16 @@ public class UserCreateAction extends ActionSupport implements SessionAware{
 
 
 
+	// 新規登録実行
 	public String execute() throws SQLException {
 		// エラー前提で結果を返す
 		String ret= ERROR;
 
 		// ERROR判定に使用 0ならSUCCESS、1以上の場合ERROR
 		int errorCount= 0;
-
+		
+		
+		
 
 
 	}
