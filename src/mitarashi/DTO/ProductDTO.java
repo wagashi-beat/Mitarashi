@@ -9,6 +9,7 @@ import mitarashi.DAO.CompanyDAO;
 
 public class ProductDTO {
 	
+	//商品情報項目
 	private int id;
 	private int productId;
 	private int price;
@@ -25,7 +26,7 @@ public class ProductDTO {
 	private Date registDate;
 	private Date updateDate;
 	
-	//カテゴリ名をひっぱってくるやつ
+	//カテゴリ名をひっぱってくる
 	private String categoryName;
 	
 	public String getCategoryName(){
@@ -46,7 +47,7 @@ public class ProductDTO {
 		}
 	}
 	
-	//販売会社名をひっぱってくるやつ
+	//販売会社名をひっぱってくる
 	private String companyName;
 	
 	public String getCompanyName(){
