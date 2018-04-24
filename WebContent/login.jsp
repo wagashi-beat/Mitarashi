@@ -57,7 +57,7 @@
 
 
 	<!-- ID保存チェックボックス -->
-	<input type= "checkbox" name= "loginMemory" value= "1" /> ログインIDを保存<br>
+	<input type= "checkbox" name= "loginMemory" value= "1" /> ログインIDを保存
 
 
 	<!-- サブミットボタン -->
