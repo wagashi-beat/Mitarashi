@@ -8,7 +8,7 @@ import mitarashi.DAO.CategoryDAO;
 import mitarashi.DAO.CompanyDAO;
 
 public class ProductDTO {
-	
+
 	//商品情報項目
 	private int id;
 	private int productId;
@@ -22,13 +22,13 @@ public class ProductDTO {
 	private String productDescription;
 	private String imageFilePath;
 	private String imageFileName;
-	private String releasedate;
+	private String releaseDate;
 	private Date registDate;
 	private Date updateDate;
-	
+
 	//カテゴリ名をひっぱってくる
 	private String categoryName;
-	
+
 	public String getCategoryName(){
 		return categoryName;
 	}
@@ -39,17 +39,17 @@ public class ProductDTO {
 		List<CategoryDTO> categoryList=new ArrayList<>();
 		CategoryDAO categoryDAO=new CategoryDAO();
 		categoryList=categoryDAO.getCategoryInfo();
-		
+
 		for(int i=0;i < categoryList.size(); i++ ){
 			if(categoryList.get(i).getCategoryId().equals(category_id.toString())){
 				this.categoryName=categoryList.get(i).getCategoryName();
 			}
 		}
 	}
-	
+
 	//販売会社名をひっぱってくる
 	private String companyName;
-	
+
 	public String getCompanyName(){
 		return companyName;
 	}
@@ -60,7 +60,7 @@ public class ProductDTO {
 		List<CompanyDTO> companyList=new ArrayList<>();
 		CompanyDAO companyDAO=new CompanyDAO();
 		companyList=companyDAO.getCompanyInfo();
-		
+
 		for(int i=0;i < companyList.size(); i++ ){
 			if(companyList.get(i).getCompanyId().equals(release_company_id.toString())){
 				this.companyName=companyList.get(i).getCompanyName();
@@ -139,11 +139,11 @@ public class ProductDTO {
 	public void setImageFileName(String imageFileName) {
 		this.imageFileName = imageFileName;
 	}
-	public String getReleasedate() {
-		return releasedate;
+	public String getReleaseDate() {
+		return releaseDate;
 	}
-	public void setReleasedate(String releasedate) {
-		this.releasedate = releasedate;
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 	public Date getRegistDate() {
 		return registDate;
@@ -157,9 +157,9 @@ public class ProductDTO {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	
-	
-	
+
+
+
+
 
 }
