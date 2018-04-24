@@ -40,7 +40,7 @@
 	</p>
 
 	<!-- ユーザーID入力フォーム -->
-	<input type= "text" name= "userId" value= "" placeholder= "ユーザーID" />
+	<input type= "text" name= "userId" value= '<s:property value= "#session.loginMemoryId" />'  placeholder= "ユーザーID" />
 
 
 	<!-- パスワードに関するエラー -->

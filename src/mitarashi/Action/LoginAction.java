@@ -55,7 +55,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		String ret= ERROR;
 
 		// ERROR判定に使用 0ならSUCCESS、1以上の場合ERROR
-		int errorCount= 0;
+		int errorCountLog= 0;
 
 
 		// 未入力項目があった場合
@@ -63,7 +63,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				userId.equals("") && password.equals("")) {
 			errorLog= "未入力項目があります（o・▽・o）";
 			session.put("errorLog", errorLog);
-			errorCount++;
+			errorCountLog++;
 		}
 
 		// 未入力項目がなかった場合
@@ -74,15 +74,15 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			// 文字数エラー
 			if (userId.length()<3 || userId.length()>16) {
 				errorLogId= "3文字以上16文字以下で入力してください（o・▽・o）";
-				errorLogIdList.add("errorLogId");
-				errorCount++;
+				errorLogIdList.add(errorLogId);
+				errorCountLog++;
 			}
 
 			// 文字種エラー
 			if (!userId.matches("^[0-9a-zA-Z]+$")) {
 				errorLogId= "半角英数字で入力してください（o・▽・o）";
-				errorLogIdList.add("errorLogId");
-				errorCount++;
+				errorLogIdList.add(errorLogId);
+				errorCountLog++;
 			}
 
 
@@ -91,19 +91,19 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			// 文字数エラー
 			if (password.length()<3 || password.length()>16) {
 				errorLogPass= "3文字以上16文字以下で入力してください（o・▽・o）";
-				errorLogPassList.add("errorLogPass");
-				errorCount++;
+				errorLogPassList.add(errorLogPass);
+				errorCountLog++;
 			}
 
 			// 文字種エラー
 			if (!password.matches("^[0-9a-zA-Z]+$")) {
 				errorLogPass= "半角英数字で入力してください（o・▽・o）";
-				errorLogPassList.add("errorLogPass");
-				errorCount++;
+				errorLogPassList.add(errorLogPass);
+				errorCountLog++;
 			}
 		}
-		// errorCount集計、0以上の場合ERRORを返す
-		if (errorCount> 0) {
+		// errorCountLogt集計、0以上の場合ERRORを返す
+		if (errorCountLog> 0) {
 			ret= ERROR;
 			return ret;
 		}

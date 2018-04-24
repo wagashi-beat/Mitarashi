@@ -12,8 +12,10 @@
 <body>
 	<img src= "./img/mitarashi_dango.png">
 
-	（o・<a href= '<s:url action= "GoLoginAction" />'>▽</a>・o）
+	（o<a href= '<s:url action= "GoUserCreateAction" />'>・</a><a href= '<s:url action= "GoLoginAction" />'>▽</a>・o）
 	<s:if test= "session.loginFlg"><s:property value= "session.userId" />さんようこそー（o・▽・o）</s:if>
+	<s:if test= "session.loginFlg"><a href= '<s:url action= "LogoutAction" /> '>脱出</a></s:if>
+
 
 	</body>
 </html>
